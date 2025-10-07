@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html class="" lang="en">
+<html class="" lang="{{lang}}">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes" />
-        <base href="/" target="_self" />
+        <base href="{{baseTag.href}}" target="{{baseTag.target}}" />
 
+        {{#if title}}
+        <title>{{title}}</title>
+        {{/if}}
 
-        <link rel="icon" type="image/x-icon" href="favicon.ico?_wwcv=6" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico?_wwcv={{cacheVersion}}" />
 
         <link rel="manifest" href="manifest.json?_wwcv=6" />
         <meta name="theme-color" content="" />
@@ -216,18 +219,19 @@
 </style>
         
 
-        <link rel="alternate" hreflang="x-default" href="https://76d30172-2deb-41d8-b591-720ff83dbd7d.weweb-preview.io/" />
-                <link rel="alternate" hreflang="en" href="https://76d30172-2deb-41d8-b591-720ff83dbd7d.weweb-preview.io/" />
-          
-  
-        <meta name="twitter:card" content="summary" />
-              
-        <meta property="og:type" content="website" />
-          
-        <meta name="robots" content="index, follow" />
-           
-      <script type="module" crossorigin src="/assets/index-CKvD6qSY.js"></script>
-      <link rel="stylesheet" crossorigin href="/assets/index-DYIv07g8.css">
+        {{#alternateLinks}}
+        <link rel="{{rel}}" hreflang="{{hreflang}}" href="{{href}}" />
+        {{/alternateLinks}} {{#if structuredData}}
+        <script type="application/ld+json">
+            {{structuredData}}
+        </script>
+        {{/if}} {{{scripts.head}}} {{#meta}} {{#if name}}
+        <meta name="{{name}}" content="{{content}}" />
+        {{/if}} {{#if itemprop}}
+        <meta itemprop="{{itemprop}}" content="{{content}}" />
+        {{/if}} {{#if property}}
+        <meta property="{{property}}" content="{{content}}" />
+        {{/if}} {{/meta}}
     </head>
     <body style="margin: 0; font-family: var(--ww-default-font-family, unset)">
         <noscript>
@@ -237,7 +241,7 @@
             </strong>
         </noscript>
         <div id="app"></div>
-        
-
+        {{{scripts.body}}}
+        <script type="module" src="@/_front/main.js"></script>
     </body>
 </html>
